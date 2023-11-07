@@ -211,9 +211,7 @@
     }
    
 }
-.inActiveMenuTwo{
-    
-}
+
 .inActiveMegaMenu {
     color: var(--color-dark-1) !important;
     &:hover{
@@ -432,14 +430,10 @@
     border-bottom: 2px double ;
 }
 .menuLogging {
-    display: flex;
-    align-items: baseline;
-    i {
-        margin: 0 10px;
-    }
-    div {
-        margin: 0 10px;
-
+    ul {
+        display: flex;
+        align-items: center;
+ 
     }
 }
 .profileImageHeader {
@@ -449,5 +443,67 @@
     position: relative;
     top: 12px;
     margin-top: -19px;
+}
+.menuCustom {
+    ul {
+        li {
+            text-transform: capitalize;
+            color: var(--color-dark-1);
+            font-size: 15px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            // margin: 0 7px;
+            
+            a {
+            color: var(--color-dark-1);
+            font-size: 15px;
+            text-transform: capitalize;
+
+            }
+            button {
+            color: var(--color-dark-1);
+            text-transform: capitalize;
+            font-size: 15px;
+            
+            padding: 0px;
+            margin: 0px;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(255, 255, 255, 0.15);
+                // padding: 6px 6px;
+                border-radius: 4px;
+                margin: 0px;
+                button {
+                    background-color: transparent !important;
+
+                }
+            }
+            .fa-cog {
+                font-size: 25px;
+            }
+        }
+    }
+}
+.mainCourseLi {
+    display: flex;
+    align-items: center;
+    .img_course {
+
+        img {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            object-fit: cover;
+        }
+    }
+    .progress_course {
+        margin-left: 9px;
+        width: 100%;
+    }
+}
+.images_header_show {
+    filter: contrast(0.5);
 }
 //own scss end

@@ -40,7 +40,6 @@ export default function SignUpForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
   
-    // console.log("userrrrrrr",user);
 
     axios.post(`https://my-webapi-service-glixobkvea-uc.a.run.app/api/Auth/register`, {
       email,

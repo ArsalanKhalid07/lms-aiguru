@@ -81,7 +81,7 @@ export default function Menu({ allClasses, headerPosition }) {
             <li className="menu-item-has-children -has-mega-menu">
               <Link
                 data-barba
-                href="courses-list-1"
+                href="#"
                 className={menuItem == "Courses" ? "activeMenu" : ""}
               >
                 Courses
@@ -221,7 +221,7 @@ export default function Menu({ allClasses, headerPosition }) {
             <li className="menu-item-has-children">
               <Link
                 data-barba
-                href="/event-list-1"
+                href="#"
                 className={menuItem == "Events" ? "activeMenu" : ""}
               >
                 Events
@@ -251,7 +251,7 @@ export default function Menu({ allClasses, headerPosition }) {
             <li className="menu-item-has-children">
               <Link
                 data-barba
-                href="blog-list-1"
+                href="#"
                 className={menuItem == "Blogs" ? "activeMenu" : ""}
               >
                 Blog 
@@ -419,7 +419,7 @@ export default function Menu({ allClasses, headerPosition }) {
             <li>
               <Link
                 data-barba
-                href="/contact-1"
+                href="#"
                 className={
                   pathname == "/contact-1" ? "activeMenu" : "inActiveMenuTwo"
                 }

@@ -2,14 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import CartToggle from "../component/CartToggle";
-import Menu from "../component/Menu";
 import MobileMenu from "../component/MobileMenu";
 import SearchToggle from "../component/SearchToggle";
 import Image from "next/image";
+import MenuMain from "../component/Menu";
 import Link from "next/link";
-import { useContextElement } from "@/context/Context";
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import axios from "axios";
-
+import LinearProgress from "@mui/material/LinearProgress";
 
 export default function HeaderSix() {
   const [activeMobileMenu, setActiveMobileMenu] = useState(false);
@@ -18,10 +20,11 @@ export default function HeaderSix() {
   const [loggedUser,setLoggedUser] = useState({});
   const [tokenUser,setTokenUser] = useState('');
 
-  const [userProfile,setUserProfile] = useState([])
+  const [userProfile,setUserProfile] = useState([]);
+  const [userCourses,setUserCourses] = useState([]);
 
+  console.log("userCoursesuserCoursesuserCourses,userCourses",userCourses)
 
-  console.log("userProfileuserProfile",userProfile)
   useEffect(() => {
     const handleScroll = () => {
       const position = window.scrollY;
@@ -51,12 +54,16 @@ const logout = () => {
   }
 }
 
+
+
 useEffect(()=>{
   
 const config = {
   headers: { Authorization: `Bearer ${tokenUser}` }
 };
   if(loggedUser) {
+
+    // for user api
     axios.get(`${process.env.NEXT_PUBLIC_API}/api/User/Get/${loggedUser}`,config)
     .then(res => {
       const data = res.data;
@@ -65,8 +72,42 @@ const config = {
     .catch(err => {
       console.log("User Profile error", err?.message);
   });
+
+    // for courses api
+    axios.get(`${process.env.NEXT_PUBLIC_API}/api/Course/Get/${loggedUser}`,config)
+    .then(res => {
+      const data = res.data;
+      setUserCourses(data);
+    })
+    .catch(err => {
+      console.log("User Courses error", err?.message);
+    });
+
+
   }
 },[loggedUser])
+
+const [anchorEl, setAnchorEl] = React.useState(null);
+const [anchorElTwo, setanchorElTwo] = React.useState(null);
+
+const open = Boolean(anchorEl);
+const openTwo = Boolean(anchorElTwo);
+
+const handleClick = (event) => {
+  setAnchorEl(event.currentTarget);
+};
+const handleClose = () => {
+  setAnchorEl(null);
+};
+
+
+const handleClickTwo = (event) => {
+  setanchorElTwo(event.currentTarget);
+};
+const handleCloseTwo = () => {
+  setanchorElTwo(null);
+};
+
 
   return (
     <header
@@ -89,24 +130,101 @@ const config = {
                 </Link>
               </div>
 
-              <Menu allClasses="menu__nav text-dark-1 -is-active" />
-              <MobileMenu
+              <MenuMain allClasses="menu__nav text-dark-1 -is-active" />
+              {/* <MobileMenu
                 setActiveMobileMenu={setActiveMobileMenu}
                 activeMobileMenu={activeMobileMenu}
-              />
+              /> */}
             </div>
           </div>
-          {loggedUser ?
+          {loggedUser  ?
               <>
-                <div className="col-auto menuLogging">
-                  <img className="profileImageHeader" src={userProfile?.user_image}  />
-                  <div>{userProfile?.username}</div>
-                  <div className="wallet">Connect to Wallet</div>
-                  <div>Your Progress Bar</div>
-                  <i className="fa fa-cog" aria-hidden="true"></i>
-                  <div onClick={() => logout()}>
-                logout
-                </div>
+                <div className="col-auto menuLogging menuCustom">
+                  <ul>
+                      <li>
+                        <img className="profileImageHeader" src={userProfile?.user_image}  />
+
+                      </li>
+                        <li>
+                
+                            {userProfile?.username}
+                      
+                        </li>
+                        <li>
+                              Connect to Wallet
+
+                        </li>
+                        <li>
+                          <Button
+                              id="demo-positioned-button"
+                              aria-controls={open ? 'demo-positioned-menu' : undefined}
+                              aria-haspopup="true"
+                              aria-expanded={open ? 'true' : undefined}
+                              onClick={handleClick}
+                              >
+                              Progress Bar
+                          </Button>
+                          <Menu
+                                id="demo-positioned-menu"
+                                aria-labelledby="demo-positioned-button"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                className="progress_bar_list"
+                                transformOrigin={{
+                                  vertical: 'top',
+                                  horizontal: 'right',
+                                }}
+                                anchorOrigin={{
+                                  vertical: 'bottom',
+                                  horizontal: 'right',
+                                }}
+                                >
+                                  {userCourses?.map((elm,id)=> {
+                                    return (
+                                      <MenuItem key={elm.course_id} onClick={handleClose}>
+                                        <div className="mainCourseLi">
+                                            <div className="img_course">
+                                                <img src="https://images.unsplash.com/photo-1605541885855-88863971e7b0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=800&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY5OTM1MzM3OQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1900" alt="image" />
+                                        
+
+                                            </div>
+                                            <div className="progress_course">
+                                            <p>{elm.course_name}</p>
+                                                  <LinearProgress style={{width:"100%"}}  variant="determinate" value={elm.course_progress} />
+                                                  <p>{elm.course_progress}%</p>
+                                            </div>
+                                        </div>
+                                        </MenuItem>
+                                    )
+                                  })}
+                          </Menu>
+                        </li>
+                        <li>
+                          <Button
+                              id="demo-positioned-button"
+                              aria-controls={openTwo ? 'demo-positioned-menu' : undefined}
+                              aria-haspopup="true"
+                              aria-expanded={openTwo ? 'true' : undefined}
+                              onClick={handleClickTwo}
+                              >
+                              <i className="fa fa-cog" aria-hidden="true"></i>
+                          </Button>
+                          <Menu
+                                id="demo-positioned-menu"
+                                aria-labelledby="demo-positioned-button"
+                                anchorEl={anchorElTwo}
+                                open={openTwo}
+                                onClose={handleCloseTwo}
+                             
+
+                                >
+                                    <MenuItem onClick={() => logout()}>Logout</MenuItem>
+                          </Menu>
+                        </li>
+                         
+                
+                  </ul>
                 </div>
               
               </>
