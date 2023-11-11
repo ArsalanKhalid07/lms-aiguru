@@ -506,4 +506,13 @@
 .images_header_show {
     filter: contrast(0.5);
 }
+.forgetList {
+    display: flex;
+    justify-content: space-between;
+}
+.logoNoPage {
+    position: relative;
+    top: 21px;
+    left: 27px;
+}
 //own scss end

@@ -81,6 +81,9 @@ export default function LoginForm() {
                     onChange={(e)=> {setPassword(e.target.value)}}
                   />
                 </div>
+                <Link href="/forget" className="text-purple-1">
+                  Forget your password?
+                </Link>
                 <div className="col-12">
                   <button
                     type="submit"

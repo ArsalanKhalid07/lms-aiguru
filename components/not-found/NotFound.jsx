@@ -1,8 +1,18 @@
+"use client"
 import React from "react";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
+
+
 export default function NotFound() {
+
+  const router = useRouter();
+  const backHome = () => {
+    router.push("/")
+  }
   return (
-    <section className="no-page layout-pt-lg layout-pb-lg bg-beige-1">
+    // <section className="no-page layout-pt-lg layout-pb-lg bg-beige-1"></section>
+    <section className="">
       <div className="container">
         <div className="row y-gap-50 justify-between items-center">
           <div className="col-lg-6">
@@ -28,7 +38,7 @@ export default function NotFound() {
                 The page you're looking for isn't available. Try to search again
                 <br /> or use the go to.
               </div>
-              <button className="button -md -purple-1 text-white mt-20">
+              <button className="button -md -purple-1 text-white mt-20" onClick={backHome}>
                 Go Back To Homepage
               </button>
             </div>
@@ -37,4 +47,4 @@ export default function NotFound() {
       </div>
     </section>
   );
-}
+} 
