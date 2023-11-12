@@ -114,7 +114,7 @@ export default function Pricing() {
                     href="/courses-list-1"
                   > */}
                    <Link
-                    className="button -md -purple-3 text-purple-1"
+                    className="button -md -purple-3 text-purple-1 getStartedPrice"
                     href="#"
                   > 
                     Get Started Now
@@ -175,7 +175,7 @@ export default function Pricing() {
                     href="/courses-list-1"
                   > */}
                    <Link
-                    className="button -md -purple-3 text-purple-1"
+                    className="button -md -purple-3 text-purple-1 getStartedPrice"
                     href="#"
                   > 
                     Get Started Now
@@ -239,7 +239,7 @@ export default function Pricing() {
                     href="/courses-list-1"
                   > */}
                    <Link
-                    className="button -md -purple-3 text-purple-1"
+                    className="button -md -purple-3 text-purple-1 getStartedPrice"
                     href="#"
                   > 
                     Get Started Now

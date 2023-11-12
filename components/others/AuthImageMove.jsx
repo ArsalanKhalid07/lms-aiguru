@@ -40,18 +40,18 @@ export default function AuthImageMove() {
   }, []);
   return (
     <div className="form-page__img bg-dark-1">
-      <div className="form-page-composition">
-        <div className="-bg">
+      <div className="form-page-composition imagesLogin">
+        {/* <div className="-bg">
           <Image
             width={1250}
             height={1000}
             style={{ width: "100%" }}
             data-move="30"
             className="js-mouse-move"
-            src="/assets/img/login/bg.png"
+            src="/assets/images/login-page-1.png"
             alt="bg"
           />
-        </div>
+        </div> */}
         <div className="-el-1">
           <Image
             width={1250}
@@ -59,7 +59,7 @@ export default function AuthImageMove() {
             style={{ width: "100%" }}
             data-move="20"
             className="js-mouse-move"
-            src="/assets/img/home-9/hero/bg.png"
+            src="/assets/images/login-page-2.png"
             alt="image"
           />
         </div>
@@ -69,7 +69,7 @@ export default function AuthImageMove() {
             height={485}
             data-move="40"
             className="js-mouse-move"
-            src="/assets/img/home-9/hero/1.png"
+            src="/assets/images/login-page-3.png"
             alt="icon"
           />
         </div>
@@ -79,7 +79,7 @@ export default function AuthImageMove() {
             height={108}
             data-move="40"
             className="js-mouse-move"
-            src="/assets/img/home-9/hero/2.png"
+            src="/assets/images/login-page-4.png"
             alt="icon"
           />
         </div>
@@ -89,7 +89,7 @@ export default function AuthImageMove() {
             height={108}
             data-move="40"
             className="js-mouse-move"
-            src="/assets/img/home-9/hero/3.png"
+            src="/assets/images/login-page-5.png"
             alt="icon"
           />
         </div>

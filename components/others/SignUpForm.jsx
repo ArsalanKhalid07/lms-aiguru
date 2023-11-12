@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import React from "react";
 import {  ToastContainer,toast } from 'react-toastify';
@@ -17,7 +17,7 @@ export default function SignUpForm() {
   const [about,setAbout] = useState('');
   const [country,setCountry] = useState('');
   const [occupation,setOccupation] = useState('');
-  const [user_image,setUser_image] = useState('');
+  const [user_image,setUser_image] = useState(null);
 
   const [nextPage,setNextPage] = useState(false);
 
@@ -37,7 +37,7 @@ const router = useRouter();
     e.preventDefault();
   
 
-    axios.post(`https://my-webapi-service-glixobkvea-uc.a.run.app/api/Auth/register`, {
+    axios.post(`${process.env.NEXT_PUBLIC_API}/api/Auth/register`, {
       email,
       username,
       password,
@@ -52,22 +52,43 @@ const router = useRouter();
        headers: { "Content-Type": "multipart/form-data" }
     })
     .then(res => {
+      toast("User Register Successfully")
       router.push("/login")
+      
 
     })
     .catch(err => {
-      toast(err.response.data.errors.about[0]);
-      toast(err.response.data.errors.country[0]);
-      toast(err.response.data.errors.email[0]);
-      toast(err.response.data.errors.occupation[0]);
-      toast(err.response.data.errors.password[0]);
-      toast(err.response.data.errors.phone[0]);
-      toast(err.response.data.errors.username[0]);
+      if(err) {
+        toast(err?.response?.data?.errors?.about?.toString());
+        toast(err?.response?.data?.errors?.country?.toString());
+        toast(err?.response?.data?.errors?.email?.toString());
+        toast(err?.response?.data?.errors?.occupation?.toString());
+        toast(err?.response?.data?.errors?.password?.toString() && "Password must contains numbers, letters, uppercase and special characters");
+        toast(err?.response?.data?.errors?.phone?.toString());
+        toast(err?.response?.data?.errors?.username?.toString());
+      }
+      console.log("errerr",err)
+
         setNextPage(false)
   });
 
   };
 
+ const FileUploader = ({onFileSelect}) => {
+    const fileInput = useRef(null)
+
+    const handleFileInput = (e) => {
+         // handle validations
+         onFileSelect(e.target.files[0])
+    }
+
+    return (
+        <div className="file-uploader">
+            <input type="file" onChange={handleFileInput} />
+            <button onClick={e => fileInput.current && fileInput.current.click()} className="btn btn-primary"/>
+        </div>
+    )
+}
   
  
 
@@ -98,19 +119,19 @@ const router = useRouter();
                   <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
                     Email address *
                   </label>
-                  <input  type="text" name="email" placeholder="Name" onChange={(e) => setEmail(e.target.value)}  value={email}/>
+                  <input  type="text" name="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}  value={email}/>
                 </div>
                 <div className="col-lg-12">
                   <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
                     Username *
                   </label>
-                  <input  type="text" name="username" placeholder="Name" onChange={(e) => setUsername(e.target.value)}  value={username} />
+                  <input  type="text" name="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)}  value={username} />
                 </div>
                 <div className="col-lg-12">
                   <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
                     Password *
                   </label>
-                  <input  type="text" name="password" placeholder="Name" onChange={(e) => setPassword(e.target.value)}  value={password} />
+                  <input  type="text" name="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}  value={password} />
                 </div> 
                 <div className="col-6 ml-auto">
                   <button
@@ -130,10 +151,12 @@ const router = useRouter();
                 <input  type="text" name="phone" placeholder="Phone" onChange={(e) => setPhone(e.target.value)}  value={phone} />
               </div>
               <div className="col-lg-6">
+                <div className="dob_flex">
                 <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
                 Date of birth  *
                 </label>
                 <input  type="date" name="dob" placeholder="Date of birth" onChange={(e) => setDob(e.target.value)}  value={dob} />
+                </div>
               </div>
               <div className="col-lg-6">
                 <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
@@ -417,7 +440,11 @@ const router = useRouter();
                 <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
                 Image
                 </label>
-                <input  type="file" name="user_image" placeholder="Image" onChange={(e) => setUser_image(e.target.value)}  value={user_image} />
+                <input  type="text" name="user_image" placeholder="Image" onChange={(e) => setUser_image(e.target.value)}  value={user_image} />
+                
+               
+          
+                
               </div>
               <div className="col-6">
                   <button

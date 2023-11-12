@@ -142,7 +142,7 @@ const handleCloseTwo = () => {
                 <div className="col-auto menuLogging menuCustom">
                   <ul>
                       <li>
-                        <img className="profileImageHeader" src={userProfile?.user_image}  />
+                        <img className="profileImageHeader" src={userProfile?.user_image ? userProfile?.user_image : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"  }  />
 
                       </li>
                         <li>

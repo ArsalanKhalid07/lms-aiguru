@@ -109,7 +109,7 @@ function dateFormat(inputDate, format) {
                   <div className="blogCard__category">{elm.category}</div>
                   <h4 className="blogCard__title">
                     <Link className="linkCustom" href={`/blogs/${elm?.event_id}`}>
-                      {i == 0 ? elm?.event_name.slice(0,30) : elm?.event_name  }
+                      {elm?.event_name  }
                     </Link>
                   </h4>
                   <div className="blogCard__date">{elm.event_date}</div>
@@ -119,7 +119,7 @@ function dateFormat(inputDate, format) {
           ))}
 
           <div className="col-lg-4">
-            <div className="row y-gap-30">
+            <div className="row y-gap-30 eventFalseFeature">
               {featureFalse.map((elm, i) => (
                 <div key={i} className="col-lg-12 col-md-6">
                   <div
@@ -139,10 +139,10 @@ function dateFormat(inputDate, format) {
                       </span>
                     </div>
                     <div className="eventCard__content">
-                      <div className="text-13 lh-1 fw-500 uppercase text-purple-1">
+                      {/* <div className="text-13 lh-1 fw-500 uppercase text-purple-1"> */}
                         {/* {elm?.category} */}
-                        Ai
-                      </div>
+                        {/* Ai */}
+                      {/* </div> */}
                       <h4 className="text-17 lh-15 fw-500 mt-10">
                         {" "}
                         <Link className="linkCustom" href={`/events/${elm?.event_id}`}>

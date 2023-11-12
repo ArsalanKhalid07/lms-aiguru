@@ -16,6 +16,7 @@ export const useContextElement = () => {
     const [userLogin,setUserLogin] = useState({});
     const [cartCourses, setCartCourses] = useState([])
     const [cartEvents, setCartEvents] = useState([])
+    const [emailNewPass,setemailNewPass] =useState('');
     const addCourseToCart = (id)=>{
 
         if (!cartCourses.filter((elm)=>elm.id == id)[0]) {
@@ -79,6 +80,7 @@ export const useContextElement = () => {
         addProductToCart,
         isAddedToCartProducts,
         userLogin,
+        emailNewPass,
 
 
         addCourseToCart,
@@ -88,10 +90,12 @@ export const useContextElement = () => {
         setUserLogin,
 
 
+
         cartEvents,
         setCartEvents,
         addEventToCart,
-        isAddedToCartEvents
+        isAddedToCartEvents,
+        setemailNewPass
 
       };
     return (
