@@ -27,6 +27,9 @@ export default function LoginForm() {
     .then(res => {
       toast("Password is successfully updated")
       router.push('/login', { scroll: false })
+      if(email) {
+        localStorage.removeItem("forgetEmail");
+      }
     })
     .catch(err => {
       toast(err?.response?.data?.errors?.newPassword?.toString());
@@ -54,7 +57,7 @@ export default function LoginForm() {
                   <label className="text-16 lh-1 fw-500 text-dark-1 mb-12">
                     Enter New Password 
                   </label> 
-                  <input required type="text" name="title" placeholder="Name" value={newpassword} onChange={(e) => {setNewPassword(e.target.value)}} />
+                  <input required type="text" name="title" placeholder="New password" value={newpassword} onChange={(e) => {setNewPassword(e.target.value)}} />
                 </div>
                 <div className="col-12">
                   <button

@@ -587,4 +587,13 @@
         margin-top: 5px;
     }
 }
+.header_main_content_text {
+    font-size: 52px !important;
+    line-height: 70px !important;
+}
+.elements-image-learning {
+    img {
+        filter: contrast(0.5);
+    }
+}
 //own scss end

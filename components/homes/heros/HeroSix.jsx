@@ -55,9 +55,9 @@ export default function HeroSix() {
           <div className="row y-gap-50 items-center justify-between">
             <div className="col-lg-6" data-aos="fade-up" data-aos-delay="500">
               <div className="masthead__content">
-                <h1 className="masthead__title">
+                <h1 className="masthead__title header_main_content_text">
                 Unlock Personalized AI Tutoring: Over {" "}
-                  <span className="text-purple-1 underline">200</span>{" "}
+                  <span className="text-purple-1 underline">200+</span>{" "}
                   <br className="md:d-none" />  Courses at Revolutionary 
                   <br className="md:d-none" /> Prices, Powered by Blockchain!
                 </h1>
