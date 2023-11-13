@@ -24,7 +24,7 @@ export default function VerifyOTP() {
     const handleSubmitOpt = (e) => {
         e.preventDefault();
 
-        axios.post(`https://my-webapi-service-glixobkvea-uc.a.run.app/api/VerifyOTP`, { email,otp },
+        axios.post(`${process.env.NEXT_PUBLIC_API}/api/VerifyOTP`, { email,otp },
         {
             headers: { "Content-Type": "application/json" }
          }
@@ -66,7 +66,7 @@ useEffect(() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`https://my-webapi-service-glixobkvea-uc.a.run.app/api/ForgotPassword/generateotp`, { email })
+    axios.post(`${process.env.NEXT_PUBLIC_API}/api/ForgotPassword/generateotp`, { email })
     .then(res => {
 
     })

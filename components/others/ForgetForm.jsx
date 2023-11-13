@@ -19,7 +19,7 @@ export default function ForgetForm() {
 
   const handleSubmit = (e) => {
           e.preventDefault();
-          axios.post(`https://my-webapi-service-glixobkvea-uc.a.run.app/api/ForgotPassword/generateotp`, { email })
+          axios.post(`${process.env.NEXT_PUBLIC_API}/api/ForgotPassword/generateotp`, { email })
           .then(res => {
             localStorage.setItem('forgetEmail', email);
             router.push("/verify-opt")

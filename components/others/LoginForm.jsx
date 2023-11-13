@@ -23,7 +23,7 @@ export default function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`https://my-webapi-service-glixobkvea-uc.a.run.app/api/Auth/login`, { email, password })
+    axios.post(`${process.env.NEXT_PUBLIC_API}/api/Auth/login`, { email, password })
     .then(res => {
       const token = res.data;
       const users = jwtDecode(token); 

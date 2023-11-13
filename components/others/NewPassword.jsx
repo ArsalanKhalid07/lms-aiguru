@@ -23,7 +23,7 @@ export default function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`https://my-webapi-service-glixobkvea-uc.a.run.app//api/UpdatePassword`, { email, newpassword })
+    axios.post(`${process.env.NEXT_PUBLIC_API}/api/UpdatePassword`, { email, newpassword })
     .then(res => {
       toast("Password is successfully updated")
       router.push('/login', { scroll: false })
