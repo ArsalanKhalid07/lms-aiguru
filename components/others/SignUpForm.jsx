@@ -17,7 +17,7 @@ export default function SignUpForm() {
   const [about,setAbout] = useState('');
   const [country,setCountry] = useState('');
   const [occupation,setOccupation] = useState('');
-  const [user_image,setUser_image] = useState(null);
+  const [user_image,setUser_image] = useState('');
 
   const [nextPage,setNextPage] = useState(false);
 
@@ -440,10 +440,9 @@ const router = useRouter();
                 <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
                 Image
                 </label>
-                <input  type="text" name="user_image" placeholder="Image" onChange={(e) => setUser_image(e.target.value)}  value={user_image} />
-                
-               
-          
+                {/* <input  type="file" name="user_image" placeholder="Image" onChange={(e) => setUser_image(e.target.value)}  value={user_image} /> */}               
+                <input type="file" name="file" onChange={(e) => setUser_image(e.target.files[0])} />
+
                 
               </div>
               <div className="col-6">
