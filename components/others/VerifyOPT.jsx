@@ -4,15 +4,14 @@ import React from "react";
 import axios from "axios";
 import {  ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Link from "next/link";
-import { useContextElement } from "@/context/Context";
+import {useRouter} from "next/navigation";
 
 
 
 
 export default function VerifyOTP() { 
-    const [opt,setOpt] = useState('');
-  
+    const [otp,setOtp] = useState('');
+    const  router = useRouter();
     const [minutes, setMinutes] = useState(1);
     const [seconds, setSeconds] = useState(0);
     const [intervalPo,setIntervalPo] = useState(false)
@@ -25,7 +24,7 @@ export default function VerifyOTP() {
     const handleSubmitOpt = (e) => {
         e.preventDefault();
 
-        axios.post(`https://my-webapi-service-glixobkvea-uc.a.run.app/api/VerifyOTP`, { email,opt },
+        axios.post(`https://my-webapi-service-glixobkvea-uc.a.run.app/api/VerifyOTP`, { email,otp },
         {
             headers: { "Content-Type": "application/json" }
          }
@@ -33,7 +32,7 @@ export default function VerifyOTP() {
         )
         .then(res => {
 
-
+          router.push("/new-password")
         })
         .catch(err => {
           toast(err.response.data);
@@ -77,7 +76,7 @@ useEffect(() => {
   setMinutes(1)
   setSeconds(0)
   setIntervalPo(!intervalPo)
-  setOpt('')
+  setOtp('')
 };
 
 
@@ -96,9 +95,9 @@ useEffect(() => {
                     <div className="col-12">
                       <div className="verifyOptFields"> 
                           <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
-                            Enter your 6 digit OPT code 
+                            Enter your 6 digit OTP code 
                           </label>
-                          <input required type="number" name="title" placeholder="OPT" value={opt} onChange={(e) => {setOpt(e.target.value)}} />
+                          <input required type="number" name="title" placeholder="OPT" value={otp} onChange={(e) => {setOtp(Number(e.target.value))}} />
                       </div>
                       <div className="opt">
                             <div>
